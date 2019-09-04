@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+  <nav>
+    {{ macros.m_tab_head_start() }}
+      {{ macros.m_tab_head('일반', true) }}
+    {{ macros.m_tab_head_end() }}
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <!-- 일반 -->
+    {{ macros.m_tab_content_start('일반', true) }}
+      {{ macros.setting_global_scheduler_button(arg['scheduler'], arg['is_running']) }}
+      <form id='setting' name='setting'>
+        {{ macros.setting_checkbox('auto_start', '시작시 자동실행', value=arg['auto_start'], desc='On : 시작시 자동으로 스케쥴러에 등록됩니다.') }}
+        {{ macros.setting_input_text_and_buttons('synoindex_server_url', 'URL', [['server_test_btn', '접속확인']], value=arg['synoindex_server_url'], col='9', placeholder='', desc=['Synology IP 나 도메인 또는 172.17.0.1(Docker), 127.0.0.1(Native)']) }}
+        {{ macros.setting_input_text_and_buttons('test_filename', '', [['file_test_btn', '테스트']], col='9', placeholder='', desc=['re-index dirpath']) }}
+        {{ macros.setting_input_textarea('startswith_path', '명령 내릴 경로', value=arg['startswith_path'], row='9', desc=['이 경로로 시작하는 경우만 synoindex 명령 수행', '구분자 엔터', '값이 비어 있으면 모든 경로를 수행']) }}
+        {{ macros.setting_button([['global_setting_save_btn', '저장']]) }}
+      </form>
+    {{ macros.m_tab_content_end() }}
+  </div><!--tab-content-->
+</div> <!--전체-->
+
+
+<script type="text/javascript">
+var package_name = 'synoindex';
+var current_data = null;
+
+$(document).ready(function(){
+});
+
+// 스케쥴링 on / off
+$('#scheduler').change(function() {
+  var ret = $(this).prop('checked');
+  $.ajax({
+    url: '/' + package_name + '/ajax/scheduler',
+    type: "POST", 
+    cache: false,
+    data: {scheduler : ret},
+    dataType: "json",
+    success: function (list) {
+    }
+  });
+});
+
+
+$("body").on('click', '#server_test_btn', function(e){
+  e.preventDefault();
+  synoindex_server_url = document.getElementById("synoindex_server_url").value
+  server_test(synoindex_server_url, null)
+});
+
+$("body").on('click', '#file_test_btn', function(e){
+  e.preventDefault();
+  synoindex_server_url = document.getElementById("synoindex_server_url").value
+  test_filename = document.getElementById("test_filename").value
+  if (test_filename.trim() == '') {
+    $.notify('<strong>파일명을 입력하세요.</strong><br>',{
+      type: 'warning'
+    });
+    return
+  } else if (test_filename.trim().startsWith('/volume') == false) {
+    $.notify('<strong>경로는 /volume 으로 시작해야 합니다.</strong><br>',{
+      type: 'warning'
+    });
+    return
+  }
+  server_test(synoindex_server_url, test_filename)
+});
+
+function server_test(url, filename) {
+  $.ajax({
+    url: '/' + package_name + '/ajax/server_test',
+    type: "POST", 
+    cache: false,
+    data: {url:url, filename:filename},
+    dataType: "json",
+    success: function (data) {
+      if (data.ret == 'success') {
+        $.notify('<strong>성공하였습니다</strong><br>' + data.log,{
+          type: 'success'
+        });
+      } else {
+        $.notify('<strong>실패하였습니다</strong><br>' + data.log,{
+          type: 'warning'
+        });
+      }
+    }
+  });
+}
+
+
+
+</script>    
+{% endblock %}
