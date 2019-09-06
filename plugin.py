@@ -43,7 +43,6 @@ plugin_info = {
     'more' : 'https://soju6jan.com/archives/1041',
     'zip' : 'https://github.com/soju6jan/synoindex_sjva/archive/master.zip'
 }
-
 #########################################################
 
 # 메뉴 구성.
@@ -53,7 +52,6 @@ menu = {
         ['setting', '설정'], ['wait_list', '대기 목록'], ['command_list', '명령 완료 목록'], ['log', '로그']
     ]
 }  
-
 
 #########################################################
 # WEB Menu
