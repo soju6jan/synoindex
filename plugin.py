@@ -38,9 +38,10 @@ plugin_info = {
     'catogory_name' : 'tool',
     'icon' : '',
     'developer' : 'soju6jan',
-    'description' : 'Synology 전용 플러그인으로 Synology VideoStation 인식할 수 있도록 자동 인덱싱을 해주는 플러그인이다.<br>국내TV 파일처리 플러그인을 통한 로컬 파일 이동을 지원하며, GDrive Scan 플러그인으로 마운트한 구글 드라이브도 지원한다.',
+    'description' : 'Synology 전용 플러그인으로 Synology VideoStation 인식할 수 있도록 자동 인덱싱을 해주는 플러그인이다.<br> - 국내TV 파일처리 : 로컬파일 파일 처리시 자동 인덱싱<br> -  GDrive Scan : 구글 드라이브 변경사항을 감지하여, 파일 추가 삭제시 자동 인덱싱',
     'home' : 'https://github.com',
-    'more' : 'https://soju6jan.com/archives/1041'
+    'more' : 'https://soju6jan.com/archives/1041',
+    'zip' : 'https://github.com/soju6jan/synoindex_sjva/archive/master.zip'
 }
 
 #########################################################

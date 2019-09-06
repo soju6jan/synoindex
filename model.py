@@ -18,8 +18,9 @@ logger = get_logger(package_name)
 
 if app.config['config']['run_by_real']:
     dir_name = os.path.dirname(__file__)
-    db_file = dir_name.replace(path_app_root, '').replace('\\', '/') + '/%s.db' % package_name
-    app.config['SQLALCHEMY_BINDS'][package_name] = 'sqlite://%s' % (db_file)
+    db_file = os.path.join(dir_name, '%s.db' % package_name)
+    app.config['SQLALCHEMY_BINDS'][package_name] = 'sqlite:///%s' % (db_file)
+
 
 
 class ModelSetting(db.Model):
