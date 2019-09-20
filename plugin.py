@@ -33,7 +33,7 @@ def plugin_unload():
     Logic.plugin_unload()
 
 plugin_info = {
-    'version' : '0.1.0.1',
+    'version' : '0.1.0.2',
     'name' : 'Synoindex',
     'catogory_name' : 'tool',
     'icon' : '',
