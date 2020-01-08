@@ -16,11 +16,8 @@ from framework import db, app, path_app_root
 package_name = __name__.split('.')[0].split('_sjva')[0]
 logger = get_logger(package_name)
 
-if app.config['config']['run_by_real']:
-    #dir_name = os.path.dirname(__file__)
-    #db_file = os.path.join(dir_name, '%s.db' % package_name)
-    db_file = os.path.join(path_app_root, 'data', 'db', '%s.db' % package_name)
-    app.config['SQLALCHEMY_BINDS'][package_name] = 'sqlite:///%s' % (db_file)
+db_file = os.path.join(path_app_root, 'data', 'db', '%s.db' % package_name)
+app.config['SQLALCHEMY_BINDS'][package_name] = 'sqlite:///%s' % (db_file)
 
 
 
