@@ -13,11 +13,11 @@ from framework.job import Job
 from framework.util import Util
 
 # 패키지
+from .plugin import package_name, logger
 import system
 from .model import ModelSetting
 
-package_name = __name__.split('.')[0].split('_sjva')[0]
-logger = logging.getLogger(package_name)
+
 #########################################################
 import requests
 import urllib
