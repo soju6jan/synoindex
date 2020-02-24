@@ -85,6 +85,7 @@ def detail(sub):
 # For UI (보통 웹에서 요청하는 정보에 대한 결과를 리턴한다.)
 #########################################################
 @blueprint.route('/ajax/<sub>', methods=['GET', 'POST'])
+@login_required
 def ajax(sub):
     logger.debug('AJAX %s %s', package_name, sub)
     if sub == 'setting_save':
@@ -151,11 +152,4 @@ def ajax(sub):
             logger.error('Exception:%s', e)
             logger.error(traceback.format_exc())
     """
-    
-#########################################################
-# API
-#########################################################
-@blueprint.route('/api/<sub>', methods=['GET', 'POST'])
-def api(sub):
-    logger.debug('api %s %s', package_name, sub)
     
