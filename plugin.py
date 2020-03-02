@@ -50,7 +50,7 @@ menu = {
     'sub' : [
         ['setting', '설정'], ['wait_list', '대기 목록'], ['command_list', '명령 완료 목록'], ['log', '로그']
     ], 
-    'category' : 'tool',
+    'category' : 'fileprocess',
 }  
 
 #########################################################
