@@ -84,7 +84,7 @@ class Logic(object):
             logger.debug('%s scheduler_start', package_name)
             #interval = ModelSetting.query.filter_by(key='interval').first().value
             # 이 플러그인은 주기적인 스케쥴링 필요없으나 첫 화면 스케쥴러에 표시하기 위해 스케쥴 이용
-            interval = 60*60*10
+            interval = 9999
             job = Job(package_name, package_name, interval, Logic.scheduler_function, u"Synoindex", False)
             scheduler.add_job_instance(job)
         except Exception as e: 
