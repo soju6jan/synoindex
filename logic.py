@@ -136,9 +136,10 @@ class Logic(object):
             import gdrive_scan
             gdrive_scan.Logic.add_listener(Logic.listener)
 
-            Logic.thread = threading.Thread(target=Logic.thread_function, args=())
-            Logic.thread.daemon = True
-            Logic.thread.start()
+            Logic.thread_function()
+            #Logic.thread = threading.Thread(target=Logic.thread_function, args=())
+            #Logic.thread.daemon = True
+            #ogic.thread.start()
 
             #scheduler.remove_job(package_name)
         except Exception as e: 
