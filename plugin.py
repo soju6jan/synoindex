@@ -20,8 +20,8 @@ from system.logic import SystemLogic
 # 패키지
 package_name = __name__.split('.')[0]
 logger = get_logger(package_name)
-from logic import Logic
-from model import ModelSetting
+from .logic import Logic
+from .model import ModelSetting
 
 
 blueprint = Blueprint(package_name, package_name, url_prefix='/%s' %  package_name, template_folder=os.path.join(os.path.dirname(__file__), 'templates'))
@@ -34,11 +34,11 @@ def plugin_unload():
 
 plugin_info = {
     'version' : '0.1.0.2',
-    'name' : 'Synoindex',
+    'name' : u'Synoindex',
     'category_name' : 'tool',
     'icon' : '',
     'developer' : 'soju6jan',
-    'description' : 'Synology 전용 플러그인으로 Synology VideoStation 인식할 수 있도록 자동 인덱싱을 해주는 플러그인이다.<br> - 국내TV 파일처리 : 로컬파일 파일 처리시 자동 인덱싱<br> -  GDrive Scan : 구글 드라이브 변경사항을 감지하여, 파일 추가 삭제시 자동 인덱싱',
+    'description' : u'Synology 전용 플러그인으로 Synology VideoStation 인식할 수 있도록 자동 인덱싱을 해주는 플러그인이다.<br> - 국내TV 파일처리 : 로컬파일 파일 처리시 자동 인덱싱<br> -  GDrive Scan : 구글 드라이브 변경사항을 감지하여, 파일 추가 삭제시 자동 인덱싱',
     'home' : 'https://github.com/soju6jan/synoindex',
     'more' : 'https://soju6jan.com/archives/1041',
 }
@@ -46,9 +46,9 @@ plugin_info = {
 
 # 메뉴 구성.
 menu = {
-    'main' : [package_name, 'Synoindex'],
+    'main' : [package_name, u'Synoindex'],
     'sub' : [
-        ['setting', '설정'], ['wait_list', '대기 목록'], ['command_list', '명령 완료 목록'], ['log', '로그']
+        ['setting', u'설정'], ['wait_list', u'대기 목록'], ['command_list', u'명령 완료 목록'], ['log', u'로그']
     ], 
     'category' : 'fileprocess',
 }  

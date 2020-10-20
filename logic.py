@@ -60,7 +60,7 @@ class Logic(object):
             Logic.db_init()
 
             # 편의를 위해 json 파일 생성
-            from plugin import plugin_info
+            from .plugin import plugin_info
             Util.save_from_dict_to_json(plugin_info, os.path.join(os.path.dirname(__file__), 'info.json'))
 
             # 자동시작 옵션이 있으면 보통 여기서 
@@ -162,7 +162,7 @@ class Logic(object):
             url = '%s?args=-R' % (url)
             if filename.strip() != '':
                 url += '&args=%s' % filename
-            data = requests.get(url).content
+            data = requests.get(url).text
             ret = {'ret':'success', 'log':data}
         except Exception as e: 
             logger.error('Exception:%s', e)
@@ -250,7 +250,7 @@ class Logic(object):
         try:
             synoindex_server_url = Logic.get_setting_value('synoindex_server_url')
             url = '%s?args=%s&args=%s' % (synoindex_server_url, command, filepath)
-            data = requests.get(url).content
+            data = requests.get(url).text
         except Exception as e: 
             logger.error('Exception:%s', e)
             logger.error(traceback.format_exc())
